@@ -1,0 +1,40 @@
+1-Forking a network with all information it needs
+1.Example:
+brownie networks add development mainnet-fork-dev cmd=ganache-cli host=http://127.0.0.1 fork=https://eth-mainnet.alchemyapi.io/v2/PHIo5h3Xg7XCXhU8BZ4CqF2alooA_faG  accounts=10 mnemonic=brownie port=8545
+1.1-- Caso tenha alguma duvida sobre isso, abra o curso do Patrick Collins em 5 horas e 58 minutos
+2-Adding a network, creating a chainId and deploying it.
+
+2.Example: 
+On helpful_scripts.py you should  put it:
+"FORKED_LOCAL_ENVIRONMENTS = ["mainnet-fork", "mainnet-fork-dev"]
+LOCAL_BLOCKCHAIN_ENVIRONMENTS = [
+    "development",
+    "ChainX",
+]  # "uranus" = UranX testnet. uranus chainid = 14
+# para apagar a network é so ir em-->[build - deployments e deletar as chains id que desejar(lembre de apagar ela no map.son file tbm )]
+# Se tiver alguma duvida sobre, volte para o tempo 5:42(horas) e reveja o processo
+
+2-on the brownie-config.yaml you should put this:
+networks: 
+  rinkeby:
+   eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
+   verify: true
+  mainnet-fork-dev:
+   eth_usd_price_feed: '0xaEA2808407B7319A31A383B6F8B60f04BCa23cE2'
+   verify: false #Change to "true" if you would like to make it public
+  development:
+   verify: false
+  uranus:
+   verify: false
+   #Change the network verify to "true" if you would like to make it the mainnet
+
+2- And in the terminal you should run this:
+
+# "brownie networks list" on terminal to find the network you need
+# "brownie networks add Ethereum ganache-local host=http://127.0.0.1:8545 chainid=1337" adding a network on brownie
+# what to change?
+# -- You can change everything after "add" to connect to the blockchain you want
+# "brownie networks add UranX URX-Mainnet host=http://127.0.0.1:8545 chainid=13" creating your own mainnet(network), blockchain and chain id using brownie
+# Aprenda a fazer a sua propria network e uso o codigo na linha de cima para adicionar ela ao brownie; aprenda a fazer a sua chainId também
+
+brownie networks add ChainX ChainX-test chainid=8600 cmd=ganache-cli host=http:wss://eth-mainnet.alchemyapi.io/v2/PHIo5h3Xg7XCXhU8BZ4CqF2alooA_faG fork=https://eth-mainnet.alchemyapi.io/v2/PHIo5h3Xg7XCXhU8BZ4CqF2alooA_faG  accounts=10 mnemonic=brownie port=7545

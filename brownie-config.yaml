@@ -1,0 +1,33 @@
+dependencies:
+    # - organization/repo>@<version>
+    - smartcontractkit/chainlink-brownie-contracts@1.1.1
+
+compiler: 
+  solc:
+    remappings:
+    - '@chainlink=smartcontractkit/chainlink-brownie-contracts@1.1.1'
+   
+    "solidity.remappings": [
+    "@chainlink/=/Users/<USERNAME>/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@1.1.1",
+    "@openzeppelin/=/Users/<USERNAME>/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.4.0"
+  ]
+dotenv: .env
+networks: 
+  rinkeby:
+   eth_usd_price_feed: '0x8A753747A1Fa494EC906cE90E9f37563A8AF630e'
+   verify: True
+  mainnet-fork-dev:
+   eth_usd_price_feed: '0xaEA2808407B7319A31A383B6F8B60f04BCa23cE2'
+   verify: False #Change to "true" if you would like to make it public
+  development:
+   verify: False
+  uranus:
+   verify: False
+   #Change the network verify to "true" if you would like to make it the mainnet
+  ChainX:
+   eth_usd_price_feed: '0xaEA2808407B7319A31A383B6F8B60f04BCa23cE2'
+   verify: False
+wallets:
+  from_key: ${PRIVATE_KEY}
+
+  ##default: development #you can set what network you want, if you want to use your network change change here and it will be the default network
